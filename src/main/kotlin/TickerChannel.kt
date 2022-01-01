@@ -6,9 +6,11 @@ import kotlinx.coroutines.runBlocking
 
 fun main() {
     runBlocking {
-        val tickerChannel = ticker(100)
+        val tickerChannel = ticker(100, 50)
+
         launch {
             val startTime = System.currentTimeMillis()
+
             tickerChannel.consumeEach {
                 val delta = System.currentTimeMillis() - startTime
                 println("Received tick after $delta")
