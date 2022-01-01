@@ -10,9 +10,11 @@ fun main() {
         val channel = Channel<String>()
         launch { sendString(channel, 200L, "message1") }
         launch { sendString(channel, 500L, "message2") }
+
         repeat(6) {
             println(channel.receive())
         }
+
         coroutineContext.cancelChildren()
     }
 }
